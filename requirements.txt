@@ -1,0 +1,9 @@
+pandas>=2.2
+numpy>=1.26
+matplotlib>=3.8
+seaborn>=0.13
+scikit-learn>=1.4
+lifelines>=0.28
+openpyxl>=3.1
+pyarrow>=15.0
+jupyterlab>=4.0
