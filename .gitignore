@@ -1,17 +1,5 @@
-# Data (regenerated locally, not versioned)
-data/raw/*
-!data/raw/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
-
-# Python environment
-.venv/
+data/ 
+*.pbix.tmp 
+.ipynb_checkpoints/ 
 __pycache__/
-*.pyc
-
-# Jupyter
-.ipynb_checkpoints/
-
-# OS
-.DS_Store
-Thumbs.db
+notebooks/exclu/
