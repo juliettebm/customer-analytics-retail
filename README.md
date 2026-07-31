@@ -42,15 +42,7 @@ Four pages: cohort KPIs and monthly revenue, customer concentration and ranking,
 
 ```
 .
-├── data/
-│   ├── raw/
-│   │   └── online_retail_II.xlsx        # raw dataset (download separately, not versioned)
-│   └── processed/
-│       ├── clean_transactions.parquet   # analytical base, single source for notebooks 02-05
-│       ├── retail.db                    # normalised SQLite database
-│       ├── customer_segments.parquet    # RFM segments and macro-clusters
-│       ├── customer_survival.parquet    # duration and event per customer
-│       └── powerbi/                     # CSV extracts feeding the dashboard
+
 ├── notebooks/
 │   ├── 01_data_preparation.ipynb        # quality audit, cleaning decisions, decision log
 │   ├── 02_sql_modeling.ipynb            # relational schema, integrity checks, window functions
