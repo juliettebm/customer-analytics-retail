@@ -32,7 +32,7 @@ The raw `.xlsx` is not included in this repository (see `.gitignore`). Download 
 
 ## Dashboard
 
-![Dashboard overview](dashboard/overview.png)
+![Dashboard overview](dashboard/Overview.png)
 
 Four pages: cohort KPIs and monthly revenue, customer concentration and ranking, product performance, and segment profiles. Full export in `dashboard/retail_dashboard.pdf`.
 
@@ -197,6 +197,12 @@ First-order value shows a highly significant difference between tiers by log-ran
 ## Stack
 
 Python 3.x · pandas · numpy · scikit-learn · lifelines · matplotlib · seaborn · SQLite · Power BI
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE). The *Online Retail II* dataset is distributed by the UCI Machine Learning Repository under its own [terms of use](https://archive.ics.uci.edu/dataset/502/online+retail+ii); it is downloaded separately and not redistributed here.
 
 ---
 
