@@ -182,13 +182,20 @@ Codes that are never described carry no measurable revenue. That negative result
 
 ### Repurchase prediction
 
-| Model | ROC-AUC | PR-AUC |
-| --- | --- | --- |
-| Baseline (Dummy) | 0.497 | 0.434 |
-| **Logistic Regression** | **0.790** | **0.755** |
+| Model or reference | ROC-AUC | PR-AUC |
+| --- | ---: | ---: |
+| **Logistic Regression** (6 features) | **0.790** | **0.755** |
 | Random Forest | 0.775 | 0.752 |
+| Recency alone, no model | 0.762 | 0.685 |
+| Frequency alone, no model | 0.747 | 0.698 |
+| Monetary alone, no model | 0.741 | 0.695 |
+| Stratified dummy | 0.497 | 0.434 |
 
 Logistic regression outperforms the random forest on both metrics. The relationship is close enough to linear that added complexity brings nothing, and the simpler model is directly interpretable.
+
+**The dummy is not the comparison that matters.** Its ROC-AUC is 0.5 by construction on any dataset, so 0.497 confirms the evaluation is wired correctly and nothing more. Its PR-AUC of 0.434 is the genuine no-skill value, since it sits at the base positive rate of 43.6%.
+
+The reference the model actually has to beat is the rule a CRM team already applies by hand: rank customers on recency and contact the most recent first. That gives 0.762. The model's real contribution is therefore **2.8 points of ROC-AUC** — modest, and stated as such — but **7 points of PR-AUC**, from 0.685 to 0.755. PR-AUC is the more sensitive measure on the positive class, which is the class a campaign acts on, so that is where combining six signals earns its place.
 
 ### Cox model, time-to-churn
 
