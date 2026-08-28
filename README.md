@@ -7,17 +7,25 @@
 [![lifelines](https://img.shields.io/badge/lifelines-Kaplan--Meier%20%7C%20Cox-green)](https://lifelines.readthedocs.io/)
 [![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow?logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
 
-End-to-end customer analytics on 1,067,371 retail transactions: data quality auditing, relational modelling in SQL, RFM segmentation, cohort retention with survival analysis, repurchase prediction, and a four-page Power BI dashboard.
+End-to-end analytics on 1,067,371 retail transactions, taken from two angles. On the customer side: data quality auditing, relational modelling in SQL, RFM segmentation, cohort retention with survival analysis, repurchase prediction, and a four-page Power BI dashboard. On the product side: a catalogue quality audit that prices the anomalies in revenue rather than in row counts.
 
-Same dataset seen from the other side: [retail-product-catalog-analytics](https://github.com/juliettebm/retail-product-catalog-analytics) audits the product catalogue rather than the customer base, and prices the anomalies in revenue rather than in row counts.
+The two sides share one dataset and one cleaning pipeline. Notebooks 01 to 05 ask who the customers are. Notebook 06 asks what is wrong with the catalogue they buy from.
 
 ---
 
 ## Objective
 
+**Customer side, notebooks 01 to 05**
+
 1. **Where does the revenue sit?** Which customers generate it, and how concentrated is it?
 2. **How long do customers stay?** Can time-to-churn be modelled when there is no cancellation event?
 3. **Who will buy again?** Can a 90-day repurchase be predicted without leaking future information?
+
+**Product side, notebook 06**
+
+4. **How broken is the catalogue?** How many codes are not products at all, and how many carry an inconsistent or missing label?
+5. **What does it cost?** Measured in revenue exposed rather than in row counts, so that corrections can be ranked.
+6. **Which products should be fixed first?** Are the best sellers affected, and which have the highest cancellation rate?
 
 ---
 
@@ -50,11 +58,15 @@ Four pages: cohort KPIs and monthly revenue, customer concentration and ranking,
 │   ├── 02_sql_modeling.ipynb            # relational schema, integrity checks, window functions
 │   ├── 03_customer_segmentation.ipynb   # RFM scoring vs k-means, stability testing
 │   ├── 04_cohort_retention_churn.ipynb  # cohort matrix, Kaplan-Meier, Cox regression
-│   └── 05_repurchase_prediction.ipynb   # 90-day repurchase classification
+│   ├── 05_repurchase_prediction.ipynb   # 90-day repurchase classification
+│   └── 06_catalog_quality.ipynb         # catalogue audit, revenue exposed, cancellation rate
 ├── dashboard/
 │   ├── retail_dashboard.pbit            # Power BI template (data not embedded)
 │   ├── retail_dashboard.pdf             # static export of all four pages
 │   └── overview.png
+├── reports/                             # figures produced by notebook 06
+├── DATA_CATALOG.md                      # field dictionary, glossary, quality rules
+├── BACKLOG.md                           # epics, user stories, KPIs, roadmap
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -127,6 +139,12 @@ The Cox model requires stratification: purchase frequency violates the proportio
 
 Binary classification of a 90-day repurchase, with a temporal rather than random train/test split. Every feature is computed strictly within the observation window.
 
+### `06_catalog_quality.ipynb`: Product Catalogue Quality
+
+The same transactions read from the product side. Non-product codes are separated from real articles by inspecting each label rather than by filtering on code format, which would have wrongly excluded 45 genuine products. Anomalies are then priced in revenue rather than counted in lines, and crossed with the best sellers to decide what to fix first.
+
+Cancellation rate stands in for conversion, since a transactional dataset carries no page views or abandoned baskets. The field dictionary and the six quality rules are documented in `DATA_CATALOG.md`, the user stories and KPIs in `BACKLOG.md`.
+
 ---
 
 ## Key Results
@@ -148,6 +166,19 @@ Binary classification of a 90-day repurchase, with a temporal rather than random
 | Median interval between consecutive orders | 25 days |
 | Median customer lifetime (Kaplan-Meier) | 607 days |
 | Observed churn events (180-day threshold) | 40.7% |
+
+### Catalogue quality
+
+| Metric | Value |
+| --- | --- |
+| Catalogue revenue exposed to an inconsistent label | 46% |
+| Best sellers affected | 7 of the top 10 |
+| Product codes carrying several different labels | 1,230 (23% of the catalogue) |
+| Revenue tied to codes that are never described | none measurable |
+| Non-product codes confirmed by individual inspection | 17 of 62 non-standard codes |
+| Stock adjustments disguised as transactions | 3,455 lines |
+
+Codes that are never described carry no measurable revenue. That negative result is reported as it stands: the visible catalogue gap turns out not to be the expensive one, and the label inconsistencies are.
 
 ### Repurchase prediction
 

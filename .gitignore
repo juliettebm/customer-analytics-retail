@@ -3,3 +3,5 @@ data/
 .ipynb_checkpoints/ 
 __pycache__/
 notebooks/exclu/
+data/raw/*.xlsx
+data/raw/*.parquet
