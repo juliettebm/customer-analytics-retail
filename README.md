@@ -216,6 +216,8 @@ First-order value shows a highly significant difference between tiers by log-ran
 
 **Why a temporal train/test split?** A random split lets the model learn from a customer's own future behaviour. The temporal split also surfaced a caveat a random split would have hidden: the positive rate is 32.2% in the training period against 43.6% in the test period, an 11-point gap attributable to the pre-Christmas peak. The test score is therefore optimistic as a year-round estimate.
 
+The same caveat carries over to the decile lift. Lift is a ratio, so it is less sensitive to the level of the base rate than AUC is, but it is still measured on one window, and an atypical one. Nothing here establishes that a lift of 2.08 holds in February. Settling that would take a rolling-origin evaluation across several cut-off dates, which this single-window split cannot provide.
+
 **Why stratify the Cox model?** `NPurchases` counts purchases across the whole observation period, so it is partly determined by how long the customer survived. It is closer to an outcome than to a fixed baseline characteristic, which is precisely when the proportional-hazards assumption breaks down.
 
 **Why keep cancellations in the base table?** Netting them is correct for customer monetary value but wrong for behavioural analysis. They are flagged in notebook 01 and each downstream notebook decides explicitly, rather than inheriting a silent exclusion.
