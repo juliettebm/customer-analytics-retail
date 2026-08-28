@@ -1,4 +1,4 @@
-# 🛒 Retail Customer Analytics
+# Retail Customer Analytics
 
 [![Dataset](https://img.shields.io/badge/Dataset-Online%20Retail%20II%20(UCI)-blue?logo=databricks&logoColor=white)](https://archive.ics.uci.edu/dataset/502/online+retail+ii)
 [![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)](https://www.python.org/)
@@ -186,11 +186,11 @@ First-order value shows a highly significant difference between tiers by log-ran
 
 ## Limitations
 
-⚠️ Guest transactions are out of scope. 22.77% of rows carry no customer identifier and are excluded, so every customer-level metric describes identified customers only, biased towards higher-value repeat buyers.
+Guest transactions are out of scope. 22.77% of rows carry no customer identifier and are excluded, so every customer-level metric describes identified customers only, biased towards higher-value repeat buyers.
 
-⚠️ 12.9% of observed purchase intervals are same-day, likely split orders rather than genuine repeat purchases. No field distinguishes them, so they are retained.
+12.9% of observed purchase intervals are same-day, likely split orders rather than genuine repeat purchases. No field distinguishes them, so they are retained.
 
-⚠️ The dataset ends on 9 December 2011. The final month is incomplete and the last cohorts are observed for a few weeks only.
+The dataset ends on 9 December 2011. The final month is incomplete and the last cohorts are observed for a few weeks only.
 
 ---
 
