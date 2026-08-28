@@ -103,7 +103,7 @@ Each notebook depends on the outputs of the previous ones:
 jupyter notebook notebooks/01_data_preparation.ipynb
 ```
 
-Run `01` → `02` → `03` → `04` → `05`. Notebook 01 caches the raw Excel file as Parquet on first execution, so subsequent runs take seconds instead of minutes.
+Run `01` → `02` → `03` → `04` → `05` for the customer side, then `06` for the product side. Notebook 06 reads the same raw file and does not depend on the outputs of 01 to 05, so it can also be run on its own. Both cache the raw Excel file as Parquet on first execution, so subsequent runs take seconds instead of minutes.
 
 ### 5. Open the dashboard
 
