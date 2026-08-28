@@ -9,6 +9,8 @@
 
 End-to-end customer analytics on 1,067,371 retail transactions: data quality auditing, relational modelling in SQL, RFM segmentation, cohort retention with survival analysis, repurchase prediction, and a four-page Power BI dashboard.
 
+Same dataset seen from the other side: [retail-product-catalog-analytics](https://github.com/juliettebm/retail-product-catalog-analytics) audits the product catalogue rather than the customer base, and prices the anomalies in revenue rather than in row counts.
+
 ---
 
 ## Objective
