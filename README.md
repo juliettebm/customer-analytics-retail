@@ -143,7 +143,9 @@ Binary classification of a 90-day repurchase, with a temporal rather than random
 
 The same transactions read from the product side. Non-product codes are separated from real articles by inspecting each label rather than by filtering on code format, which would have wrongly excluded 45 genuine products. Anomalies are then priced in revenue rather than counted in lines, and crossed with the best sellers to decide what to fix first.
 
-Cancellation rate stands in for conversion, since a transactional dataset carries no page views or abandoned baskets. The field dictionary and the six quality rules are documented in `DATA_CATALOG.md`, the user stories and KPIs in `BACKLOG.md`.
+**"Exposed" is not "lost".** The 46% is revenue whose product-level reporting cannot be trusted, not revenue at risk of disappearing. The same article is counted under several labels, so any ranking, margin analysis or assortment decision built on the label fragments it across rows that look like separate products. The sales happened; what is broken is the ability to attribute them. It is priced in pounds rather than counted in lines for one reason: to rank the fix.
+
+Cancellation rate stands in for conversion, since a transactional dataset carries no page views or abandoned baskets. It is a loose proxy, and worth saying why: a cancelled order can come from a stock-out, a data-entry correction, a duplicate or a change of mind, none of which say anything about the product. What makes the ranking readable anyway is the family pattern — seven codes sharing one prefix at the top is hard to explain by stock-outs alone, where a single SKU would not be. With navigation data the proxy would be replaced by add-to-basket rate followed by return rate, which separates *the customer never wanted it* from *the product did not match its listing*. The field dictionary and the six quality rules are documented in `DATA_CATALOG.md`, the user stories and KPIs in `BACKLOG.md`.
 
 ---
 
@@ -172,6 +174,7 @@ Cancellation rate stands in for conversion, since a transactional dataset carrie
 | Metric | Value |
 | --- | --- |
 | Catalogue revenue exposed to an inconsistent label | 46% |
+| Catalogue revenue *lost* to it | none — see below |
 | Best sellers affected | 7 of the top 10 |
 | Product codes carrying several different labels | 1,230 (23% of the catalogue) |
 | Revenue tied to codes that are never described | none measurable |
