@@ -63,7 +63,7 @@ Four pages: cohort KPIs and monthly revenue, customer concentration and ranking,
 ├── dashboard/
 │   ├── retail_dashboard.pbit            # Power BI template (data not embedded)
 │   ├── retail_dashboard.pdf             # static export of all four pages
-│   └── overview.png
+│   └── Overview.png
 ├── reports/                             # figures produced by notebook 06
 ├── DATA_CATALOG.md                      # field dictionary, glossary, quality rules
 ├── BACKLOG.md                           # epics, user stories, KPIs, roadmap

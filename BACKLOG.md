@@ -19,7 +19,7 @@ The product catalogue contains known anomalies: non-product codes mixed in with 
 
 | # | User story | Acceptance criteria | KPI | Priority |
 |---|---|---|---|---|
-| 2.1 | As a Proxy Product Owner, I want to know the revenue exposed by catalogue anomalies so that corrections are prioritised by impact rather than at random | The revenue tied to products in anomaly (Q2, Q4) is computed and compared to total revenue | Exposed revenue / total revenue | Must |
+| 2.1 | As a Proxy Product Owner, I want to know the revenue exposed by catalogue anomalies so that corrections are prioritised by impact rather than at random | The revenue tied to products in anomaly (Q2, Q3) is computed and compared to total revenue | Exposed revenue / total revenue | Must |
 | 2.2 | As a Proxy Product Owner, I want to track the cancellation rate per product so that I can tell which anomalies actually affect conversion, not just the data | Products are ranked by cancellation rate, with the order count shown alongside | Cancellation rate by `StockCode` | Should |
 | 2.3 | As a Proxy Product Owner, I want a ranking of products by performance (best and worst sellers) so that correction effort goes to the products that matter most | The ranking crosses business performance with the presence of a catalogue anomaly | Top and bottom products by revenue, crossed with quality status | Should |
 
