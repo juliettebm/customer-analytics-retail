@@ -117,7 +117,7 @@ Open `dashboard/retail_dashboard.pbit` in Power BI Desktop and point it at the C
 
 Quality audit before any filter is applied. Missing values are measured in revenue as well as in row count, cancellations are flagged rather than removed, and non-product stock codes are identified from their descriptions rather than guessed from a pattern.
 
-Every exclusion is inspected against real rows rather than assumed from its format: the non-standard-format check catches all 17 confirmed non-product codes directly, `GIFT` included — an earlier version of this notebook classified it as a real product and kept it, corrected once the row itself showed no description, a zero price and a single anomalous line, nothing like the genuine articles it was grouped with.
+Every exclusion is inspected against real rows rather than assumed from its format: the non-standard-format check catches all 17 confirmed non-product codes directly, `GIFT` included: an earlier version of this notebook classified it as a real product and kept it, corrected once the row itself showed no description, a zero price and a single anomalous line, nothing like the genuine articles it was grouped with.
 
 ### `02_sql_modeling.ipynb`: Relational Modelling & SQL Analysis
 
@@ -145,7 +145,7 @@ The same transactions read from the product side. Non-product codes are separate
 
 **"Exposed" is not "lost".** The 46% is revenue whose product-level reporting cannot be trusted, not revenue at risk of disappearing. The same article is counted under several labels, so any ranking, margin analysis or assortment decision built on the label fragments it across rows that look like separate products. The sales happened; what is broken is the ability to attribute them. It is priced in pounds rather than counted in lines for one reason: to rank the fix.
 
-Cancellation rate stands in for conversion, since a transactional dataset carries no page views or abandoned baskets. It is a loose proxy, and worth saying why: a cancelled order can come from a stock-out, a data-entry correction, a duplicate or a change of mind, none of which say anything about the product. What makes the ranking readable anyway is the family pattern — seven codes sharing one prefix at the top is hard to explain by stock-outs alone, where a single SKU would not be. With navigation data the proxy would be replaced by add-to-basket rate followed by return rate, which separates *the customer never wanted it* from *the product did not match its listing*. The field dictionary and the six quality rules are documented in `DATA_CATALOG.md`, the user stories and KPIs in `BACKLOG.md`.
+Cancellation rate stands in for conversion, since a transactional dataset carries no page views or abandoned baskets. It is a loose proxy, and worth saying why: a cancelled order can come from a stock-out, a data-entry correction, a duplicate or a change of mind, none of which say anything about the product. What makes the ranking readable anyway is the family pattern: seven codes sharing one prefix at the top is hard to explain by stock-outs alone, where a single SKU would not be. With navigation data the proxy would be replaced by add-to-basket rate followed by return rate, which separates *the customer never wanted it* from *the product did not match its listing*. The field dictionary and the six quality rules are documented in `DATA_CATALOG.md`, the user stories and KPIs in `BACKLOG.md`.
 
 ---
 
@@ -174,7 +174,7 @@ Cancellation rate stands in for conversion, since a transactional dataset carrie
 | Metric | Value |
 | --- | --- |
 | Catalogue revenue exposed to an inconsistent label | 46% |
-| Catalogue revenue *lost* to it | none — see below |
+| Catalogue revenue *lost* to it | none, see below |
 | Best sellers affected | 6 of the top 10 |
 | Product codes carrying several different labels | 1,230 (23% of the catalogue) |
 | Revenue tied to codes that are never described | none measurable |
@@ -198,7 +198,7 @@ Logistic regression outperforms the random forest on both metrics. The relations
 
 **The dummy is not the comparison that matters.** Its ROC-AUC is 0.5 by construction on any dataset, so 0.497 confirms the evaluation is wired correctly and nothing more. Its PR-AUC of 0.434 is the genuine no-skill value, since it sits at the base positive rate of 43.6%.
 
-The reference the model actually has to beat is the rule a CRM team already applies by hand: rank customers on recency and contact the most recent first. That gives 0.762. The model's real contribution is therefore **2.8 points of ROC-AUC** — modest, and stated as such — but **7 points of PR-AUC**, from 0.685 to 0.755. PR-AUC is the more sensitive measure on the positive class, which is the class a campaign acts on, so that is where combining six signals earns its place.
+The reference the model actually has to beat is the rule a CRM team already applies by hand: rank customers on recency and contact the most recent first. That gives 0.762. The model's real contribution is therefore **2.8 points of ROC-AUC** (modest, and stated as such), but **7 points of PR-AUC**, from 0.685 to 0.755. PR-AUC is the more sensitive measure on the positive class, which is the class a campaign acts on, so that is where combining six signals earns its place.
 
 ### Cox model, time-to-churn
 
