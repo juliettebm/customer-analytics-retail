@@ -175,7 +175,7 @@ Cancellation rate stands in for conversion, since a transactional dataset carrie
 | --- | --- |
 | Catalogue revenue exposed to an inconsistent label | 46% |
 | Catalogue revenue *lost* to it | none — see below |
-| Best sellers affected | 7 of the top 10 |
+| Best sellers affected | 6 of the top 10 |
 | Product codes carrying several different labels | 1,230 (23% of the catalogue) |
 | Revenue tied to codes that are never described | none measurable |
 | Non-product codes confirmed by individual inspection | 17 of 62 non-standard codes |
