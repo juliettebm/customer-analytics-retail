@@ -145,6 +145,8 @@ The same transactions read from the product side. Non-product codes are separate
 
 **"Exposed" is not "lost".** The 46% is revenue whose product-level reporting cannot be trusted, not revenue at risk of disappearing. The same article is counted under several labels, so any ranking, margin analysis or assortment decision built on the label fragments it across rows that look like separate products. The sales happened; what is broken is the ability to attribute them. It is priced in pounds rather than counted in lines for one reason: to rank the fix.
 
+**A second, sharper anomaly sits the other way round.** Not one code with several labels, but one product split across several codes. 172 groups (344 `StockCode` values) turn out to be the same code written with a different letter case, and every revenue figure in this notebook is grouped by code, so these totals are not just mislabelled, they are genuinely undercounted: £54,884 sits on the minority-case twin of the main code, invisible in the reported total, including on two of the six flagged best sellers. Unlike the label anomaly, this one changes the notebook's own numbers, which is why it is fixed first in the priority list.
+
 Cancellation rate stands in for conversion, since a transactional dataset carries no page views or abandoned baskets. It is a loose proxy, and worth saying why: a cancelled order can come from a stock-out, a data-entry correction, a duplicate or a change of mind, none of which say anything about the product. What makes the ranking readable anyway is the family pattern: seven codes sharing one prefix at the top is hard to explain by stock-outs alone, where a single SKU would not be. With navigation data the proxy would be replaced by add-to-basket rate followed by return rate, which separates *the customer never wanted it* from *the product did not match its listing*. The field dictionary and the six quality rules are documented in `DATA_CATALOG.md`, the user stories and KPIs in `BACKLOG.md`.
 
 ---
@@ -175,7 +177,8 @@ Cancellation rate stands in for conversion, since a transactional dataset carrie
 | --- | --- |
 | Catalogue revenue exposed to an inconsistent label | 46% |
 | Catalogue revenue *lost* to it | none, see below |
-| Best sellers affected | 6 of the top 10 |
+| Revenue split across case-only duplicate codes | £54,884 (172 code pairs) |
+| Best sellers affected | 6 of the top 10 (label), 2 of 10 (case-duplicate code) |
 | Product codes carrying several different labels | 1,230 (23% of the catalogue) |
 | Revenue tied to codes that are never described | none measurable |
 | Non-product codes confirmed by individual inspection | 17 of 62 non-standard codes |
