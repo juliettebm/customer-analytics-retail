@@ -117,7 +117,7 @@ Open `dashboard/retail_dashboard.pbit` in Power BI Desktop and point it at the C
 
 Quality audit before any filter is applied. Missing values are measured in revenue as well as in row count, cancellations are flagged rather than removed, and non-product stock codes are identified from their descriptions rather than guessed from a pattern.
 
-Every exclusion is inspected against real rows: three codes (`B`, `TEST001`, `TEST002`) escape an alphabetic filter entirely and surfaced only through price-anomaly investigation.
+Every exclusion is inspected against real rows rather than assumed from its format: the non-standard-format check catches all 17 confirmed non-product codes directly, `GIFT` included — an earlier version of this notebook classified it as a real product and kept it, corrected once the row itself showed no description, a zero price and a single anomalous line, nothing like the genuine articles it was grouped with.
 
 ### `02_sql_modeling.ipynb`: Relational Modelling & SQL Analysis
 
